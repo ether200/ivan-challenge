@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
 import config from "@/constants/config";
 import { SelectedCharacter } from "@/interfaces/character";
@@ -47,18 +48,22 @@ const EpisodeList = React.forwardRef<HTMLDivElement, EpisodeListProps>(
         ?.map((ep: Episode) => ep2.find((epTwo: Episode) => ep?.id === epTwo?.id))
         .filter((item: undefined | string) => item);
 
-      if (ref?.current) {
-        ref.current.scrollIntoView({
-          behavior: "smooth",
-          block: "end",
-          inline: "nearest",
-        });
-      }
       return sharedEpisodes;
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const sharedEpisodes = React.useMemo(() => getSharedEpisodes(), [episodesOne, episodesTwo]);
+
+    React.useEffect(() => {
+      if (sharedEpisodes) {
+        if (ref?.current) {
+          ref.current.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest",
+          });
+        }
+      }
+    }, [sharedEpisodes]);
 
     if (episodesOneError || episodesTwoError) {
       return <p className="my-8 text-center">An error has occurred, please try again later.</p>;
