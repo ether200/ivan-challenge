@@ -24,8 +24,9 @@ const Card: React.FC<CardProps> = ({ name, status, race, imgSrc, onClick, select
           alt="alt"
           width={144}
           height={144}
-          objectFit="cover"
           className="h-full rounded-bl-lg rounded-tl-lg"
+          style={{ width: "auto", height: "auto" }}
+          priority
         />
       </figure>
       <div className="flex h-full w-full flex-col p-2">

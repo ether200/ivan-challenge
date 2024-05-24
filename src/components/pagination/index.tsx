@@ -19,7 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, pageCount, onPageChange, 
       breakClassName="hidden md:inline-block"
       pageLinkClassName="p-2"
       onPageChange={(event) => onPageChange(keyList, event?.selected + 1)}
-      pageCount={pageCount}
+      pageCount={pageCount || 1}
       previousLabel="<"
       renderOnZeroPageCount={null}
     />

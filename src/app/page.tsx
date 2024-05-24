@@ -57,7 +57,7 @@ export default function Home() {
           </div>
           <div className="mt-8 flex w-full flex-col justify-center gap-4 md:flex-row">
             {Object.keys(characters).map((key, i, arr) => (
-              <>
+              <React.Fragment key={key}>
                 <div key={key}>
                   <CharacterList
                     page={pagination[key]}
@@ -69,15 +69,15 @@ export default function Home() {
                 </div>
                 {i + 1 !== arr.length && (
                   <>
-                    <span className="hidden md:inline-block">
+                    <span className="hidden items-center justify-center md:flex">
                       <Divider direction="vertical" />
                     </span>
-                    <span className="contents md:hidden">
+                    <span className="fllex items-center justify-center md:hidden">
                       <Divider direction="horizontal" />
                     </span>
                   </>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </div>
           {hasSelectedCharacters && (
